@@ -6,21 +6,18 @@ myip=$(hostname -I | awk '{print$1}')
 cat <<EOF
 ********************************************************************************
 
-Welcome to DigitalOcean's 1-Click LEMP Droplet.
-To keep this Droplet secure, the UFW firewall is enabled.
-All ports are BLOCKED except 22 (SSH), 80 (HTTP), and 443 (HTTPS).
+1-Click Stacks Blockchain Droplet.
+Basic usage:
+  - start stacks-blockchain: sudo systemctl start stacks
+  - stop stacks-blockchain: sudo systemctl stop stacks
+  - restart stacks-blockchain: sudo systemctl restat stacks
 
-In a web browser, you can view:
-  * The LEMP 1-Click Quickstart guide: https://do.co/2GOFe5J#start
-  * Your LEMP website: http://$myip
+All services run via docker:
+  - list containers: docker ps
+  - log of container: docker logs -f <container name>
 
-On the server:
-  * The default web root is located at /var/www/html
-  * The MySQL root password is saved in /root/.digitalocean_password
-  * Certbot is preinstalled. Run it to configure HTTPS. See
-    https://do.co/2GOFe5J#enable-https for more detail.
-
-For help and more information, visit https://do.co/2GOFe5J
+Control script is located at: /opt/stacks-blockchain-docker/manage.sh
+  https://github.com/stacks-network/stacks-blockchain-docker
 
 ********************************************************************************
 To delete this message of the day: rm -rf $(readlink -f ${0})
