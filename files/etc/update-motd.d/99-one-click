@@ -6,7 +6,7 @@ myip=$(hostname -I | awk '{print$1}')
 cat <<EOF
 ********************************************************************************
 
-1-Click Stacks Blockchain Droplet.
+Stacks-Blockchain
 
 Basic usage:
   - start stacks-blockchain: sudo systemctl start stacks
