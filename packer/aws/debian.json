@@ -26,9 +26,9 @@
       "associate_public_ip_address": "true",
       "ssh_username": "admin",
       "ami_groups": "all",
-      "ami_name": "{{user `image_name`}}",
+      "ami_name": "{{user `image_name`}}-{{user `application_version`}}-{{timestamp}}",
       "ami_regions": "{{user `ami_regions`}}",
-      "ami_description": "{{user `ami_description`}} {{user `version`}}",
+      "ami_description": "{{user `application_name`}} {{user `application_version`}}",
       "source_ami_filter": {
         "filters": {
           "virtualization-type": "hvm",
@@ -64,7 +64,7 @@
     {
       "type": "file",
       "source": "files/etc/",
-      "destination": "/tmp/etc/"
+      "destination": "/tmp/"
     },
     {
       "type": "shell",
@@ -76,10 +76,11 @@
         "LC_CTYPE=en_US.UTF-8"
       ],
       "inline": [
-        "mv /tmp/etc/* /etc/",
-        "sudo apt -qqy update",
-        "sudo apt -qqy -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' full-upgrade",
-        "sudo apt-get -qqy clean"
+        "mv /tmp/systemd/system/stacks.service /etc/systemd/system/stacks.service",
+        "mv /tmp/update-motd.d/99-one-click /etc/update-motd.d/99-one-click",
+        "apt -qqy update",
+        "apt -qqy -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' full-upgrade",
+        "apt-get -qqy clean"
       ]
     },
     {
@@ -97,7 +98,7 @@
         "scripts/01-docker.sh",
         "scripts/02-stacks-blockchain.sh",
         "scripts/02-ufw.sh",
-        "scripts/90-cleanup.sh"
+        "scripts/90-cleanup-no_dd.sh"
       ]
     }
   ]
