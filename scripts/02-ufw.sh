@@ -4,7 +4,7 @@
 # © 2021 DigitalOcean LLC.
 # This code is licensed under Apache 2.0 license (see LICENSE.md for details)
 
-echo === Configure ufs rules ===
+echo === Configure ufw rules ===
 ufw default deny incoming
 ufw default allow outgoing
 

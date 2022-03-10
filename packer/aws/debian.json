@@ -26,7 +26,7 @@
       "associate_public_ip_address": "true",
       "ssh_username": "admin",
       "ami_groups": "all",
-      "ami_name": "{{user `image_name`}}-{{user `application_version`}}-{{timestamp}}",
+      "ami_name": "{{user `image_name`}}",
       "ami_regions": "{{user `ami_regions`}}",
       "ami_description": "{{user `application_name`}} {{user `application_version`}}",
       "source_ami_filter": {
@@ -98,7 +98,8 @@
         "scripts/01-docker.sh",
         "scripts/02-stacks-blockchain.sh",
         "scripts/02-ufw.sh",
-        "scripts/90-cleanup-no_dd.sh"
+        "scripts/90-cleanup-no_dd.sh",
+        "scripts/99-img-check.sh"
       ]
     }
   ]
