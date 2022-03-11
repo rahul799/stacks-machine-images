@@ -6,20 +6,20 @@ myip=$(hostname -I | awk '{print$1}')
 cat <<EOF
 ********************************************************************************
 
-1-Click Stacks Blockchain Droplet.
+Stacks-Blockchain
 
 Basic usage:
   - start stacks-blockchain: sudo systemctl start stacks
   - stop stacks-blockchain: sudo systemctl stop stacks
   - restart stacks-blockchain: sudo systemctl restart stacks
 
-All services run via docker:
+All services are run via docker:
   - list containers: docker ps
   - log of container: docker logs -f <container name>
 
 Control script is located at: /opt/stacks-blockchain-docker/manage.sh
   https://github.com/stacks-network/stacks-blockchain-docker
-  ex: $ cd /opt/stacks-blockchain-docker; ./manage.sh mainnet logs
+  ex: $ /opt/stacks-blockchain-docker/manage.sh mainnet logs
 
 ********************************************************************************
 To delete this message of the day: rm -rf $(readlink -f ${0})

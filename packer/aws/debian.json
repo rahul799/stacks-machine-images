@@ -1,0 +1,106 @@
+{
+  "variables": {
+    "application_version": "2.05.0.1.0",
+    "image_name": "stacks-blockchain-{{user `application_version`}}-{{timestamp}}",
+    "application_name": "Stacks-Blockchain",
+    "root_volume_size": "100",
+    "arch": "x86_64",
+    "ami_regions": "us-east-1",
+    "profile": "Packer"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "{{user `region`}}",
+      "instance_type": "t2.medium",
+      "vpc_filter": {
+        "filters": {
+          "isDefault": "true"
+        }
+      },
+      "subnet_filter": {
+        "random": true
+      },
+      "communicator": "ssh",
+      "ssh_pty": true,
+      "associate_public_ip_address": "true",
+      "ssh_username": "admin",
+      "ami_groups": "all",
+      "ami_name": "{{user `image_name`}}",
+      "ami_regions": "{{user `ami_regions`}}",
+      "ami_description": "{{user `application_name`}} {{user `application_version`}}",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "debian-10*",
+          "root-device-type": "ebs",
+          "architecture": "{{user `arch`}}"
+        },
+        "owners": ["136693071363"],
+        "most_recent": true
+      },
+      "tags": {
+        "OS": "Debian 10",
+        "Name": "{{user `application_name`}}",
+        "BuildTime": "{{timestamp}}",
+        "Version": "{{user `application_version`}}",
+        "Arch": "{{user `arch`}}"
+      },
+      "launch_block_device_mappings": [
+        {
+          "device_name": "/dev/xvda",
+          "volume_size": "{{user `root_volume_size`}}",
+          "volume_type": "gp2",
+          "delete_on_termination": true
+        }
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": ["cloud-init status --wait"]
+    },
+    {
+      "type": "file",
+      "source": "files/etc/",
+      "destination": "/tmp/"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'packer' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+      "environment_vars": [
+        "DEBIAN_FRONTEND=noninteractive",
+        "LC_ALL=C",
+        "LANG=en_US.UTF-8",
+        "LC_CTYPE=en_US.UTF-8"
+      ],
+      "inline": [
+        "mv /tmp/systemd/system/stacks.service /etc/systemd/system/stacks.service",
+        "mv /tmp/update-motd.d/99-one-click /etc/update-motd.d/99-one-click",
+        "apt -qqy update",
+        "apt -qqy -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' full-upgrade",
+        "apt-get -qqy clean"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'packer' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+      "environment_vars": [
+        "application_name={{user `application_name`}}",
+        "application_version={{user `application_version`}}",
+        "DEBIAN_FRONTEND=noninteractive",
+        "LC_ALL=C",
+        "LANG=en_US.UTF-8",
+        "LC_CTYPE=en_US.UTF-8"
+      ],
+      "scripts": [
+        "scripts/01-docker.sh",
+        "scripts/02-stacks-blockchain.sh",
+        "scripts/02-ufw.sh",
+        "scripts/90-cleanup-no_dd.sh",
+        "scripts/99-img-check.sh"
+      ]
+    }
+  ]
+}
