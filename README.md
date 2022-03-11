@@ -35,7 +35,7 @@ The [scripts](./scripts) folder contains the scripts `packer` uses to setup the 
 3. [02-ufw.sh](./scripts/02-ufw.sh) - Configures simple Firewall.
 4. [90-cleanup-no_dd.sh](./scripts/90-cleanup-no_dd.sh) - Cleans the built system/logs without zeroing the disk.
 5. [90-cleanup.sh](./scripts/90-cleanup.sh) - Cleans the built system/logs and zeroes the disk.
-6. [99-img-check.sh](./scripts/99-img-check.sh) - (DigitalOcean only) Checks the snapshot for any build artifacts.
+6. [99-img-check.sh](./scripts/99-img-check.sh) - Checks the snapshot for any build artifacts.
 
 ### DigitalOcean
 

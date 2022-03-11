@@ -75,7 +75,7 @@ To start adapting this template for your own image, you can customize some varia
 - `application_version` defines the stacks-blockchain version
 - `image_name` defines the name of the resulting snapshot, which by default is `stacks-blockchain-X.X.X.X` with a UNIX timestamp appended.
 
-You can also modify these variables at runtime by using [the `-var` flag](https://www.packer.io/docs/templates/user-variables.html#setting-variables).
+You can also modify these variables at runtime by using [the `-var` flag](https://www.packer.io/docs/templates/legacy_json_templates/user-variables#setting-variables).
 
 `files` and `scripts` are provided here as symlinks to the root of the repo.
 
