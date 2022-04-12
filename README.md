@@ -33,9 +33,37 @@ The [scripts](./scripts) folder contains the scripts `packer` uses to setup the 
 1. [01-docker.sh](./scripts/01-docker.sh) - Installs Docker, docker-compose and required packages.
 2. [02-stacks-blockchain.sh](./scripts/02-stacks-blockchain.sh) - Clones [stacks-blockchain-docker](https://github.com/stacks-network/stacks-blockchain-docker) and creates the [unit file](./files/etc/systemd/system/stacks.service).
 3. [02-ufw.sh](./scripts/02-ufw.sh) - Configures simple Firewall.
-4. [90-cleanup-no_dd.sh](./scripts/90-cleanup-no_dd.sh) - Cleans the built system/logs without zeroing the disk.
-5. [90-cleanup.sh](./scripts/90-cleanup.sh) - Cleans the built system/logs and zeroes the disk.
-6. [99-img-check.sh](./scripts/99-img-check.sh) - Checks the snapshot for any build artifacts.
+4. [03-bns.sh](./scripts/03-bns.sh) - Downloads and extracts BNS data and enables the env var for the API.
+5. [90-cleanup-no_dd.sh](./scripts/90-cleanup-no_dd.sh) - Cleans the built system/logs without zeroing the disk.
+6. [90-cleanup.sh](./scripts/90-cleanup.sh) - Cleans the built system/logs and zeroes the disk.
+7. [99-img-check.sh](./scripts/99-img-check.sh) - Checks the snapshot for any build artifacts.
+
+By default, no extra env vars are enabled in the API - [defaults are used](https://github.com/stacks-network/stacks-blockchain-docker/blob/master/sample.env).
+
+#### (Optional) Enable BNS data
+
+In [03-bns.sh](./scripts/03-bns.sh), uncomment the following:
+
+```
+# echo "=== Enable stacks-blockchain-api BNS data ==="
+# sed -i -e 's|# BNS_IMPORT_DIR|BNS_IMPORT_DIR|' /opt/stacks-blockchain-docker/.env
+
+# echo "=== Downloading BNS Data ==="
+# BNS_IMPORT_DIR="/opt/stacks-blockchain-docker/persistent-data/bns-data" /opt/stacks-blockchain-docker/scripts/setup-bns.sh
+
+```
+
+#### (Optional) Enable NFT/FT metadata
+
+In [02-stacks-blockchain.sh](./scripts/02-stacks-blockchain.sh), uncomment the following:
+
+```
+# echo "=== Enable stacks-blockchain-api fungible metadata ==="
+# sed -i -e 's|# STACKS_API_ENABLE_FT_METADATA|STACKS_API_ENABLE_FT_METADATA|' /opt/stacks-blockchain-docker/.env
+
+# echo "=== Enable stacks-blockchain-api non-fungible metadata ==="
+# sed -i -e 's|# STACKS_API_ENABLE_NFT_METADATA|STACKS_API_ENABLE_NFT_METADATA|' /opt/stacks-blockchain-docker/.env
+```
 
 ### DigitalOcean
 
