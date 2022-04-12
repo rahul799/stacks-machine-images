@@ -98,6 +98,7 @@
         "scripts/01-docker.sh",
         "scripts/02-stacks-blockchain.sh",
         "scripts/02-ufw.sh",
+        "scripts/03-bns.sh",
         "scripts/90-cleanup-no_dd.sh",
         "scripts/99-img-check.sh"
       ]
