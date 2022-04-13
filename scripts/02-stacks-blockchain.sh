@@ -9,11 +9,11 @@ mkdir /opt/stacks-blockchain-docker/persistent-data
 
 # # BNS is enabled/downloaded in 03-bns.sh
 
-# echo "=== Enable stacks-blockchain-api fungible metadata ==="
-# sed -i -e 's|# STACKS_API_ENABLE_FT_METADATA|STACKS_API_ENABLE_FT_METADATA|' /opt/stacks-blockchain-docker/.env
+echo "=== Enable stacks-blockchain-api fungible metadata ==="
+sed -i -e 's|# STACKS_API_ENABLE_FT_METADATA|STACKS_API_ENABLE_FT_METADATA|' /opt/stacks-blockchain-docker/.env
 
-# echo "=== Enable stacks-blockchain-api non-fungible metadata ==="
-# sed -i -e 's|# STACKS_API_ENABLE_NFT_METADATA|STACKS_API_ENABLE_NFT_METADATA|' /opt/stacks-blockchain-docker/.env
+echo "=== Enable stacks-blockchain-api non-fungible metadata ==="
+sed -i -e 's|# STACKS_API_ENABLE_NFT_METADATA|STACKS_API_ENABLE_NFT_METADATA|' /opt/stacks-blockchain-docker/.env
 
 echo "=== Enable stacks.service on boot ==="
 systemctl enable stacks

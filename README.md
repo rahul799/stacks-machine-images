@@ -40,29 +40,29 @@ The [scripts](./scripts) folder contains the scripts `packer` uses to setup the 
 
 By default, no extra env vars are enabled in the API - [defaults are used](https://github.com/stacks-network/stacks-blockchain-docker/blob/master/sample.env).
 
-#### (Optional) Enable BNS data
+#### **Disable BNS data (Optional)**
 
-In [03-bns.sh](./scripts/03-bns.sh), uncomment the following:
-
-```
-# echo "=== Enable stacks-blockchain-api BNS data ==="
-# sed -i -e 's|# BNS_IMPORT_DIR|BNS_IMPORT_DIR|' /opt/stacks-blockchain-docker/.env
-
-# echo "=== Downloading BNS Data ==="
-# BNS_IMPORT_DIR="/opt/stacks-blockchain-docker/persistent-data/bns-data" /opt/stacks-blockchain-docker/scripts/setup-bns.sh
+In [03-bns.sh](./scripts/03-bns.sh), comment the following lines:
 
 ```
+echo "=== Enable stacks-blockchain-api BNS data ==="
+sed -i -e 's|# BNS_IMPORT_DIR|BNS_IMPORT_DIR|' /opt/stacks-blockchain-docker/.env
 
-#### (Optional) Enable NFT/FT metadata
-
-In [02-stacks-blockchain.sh](./scripts/02-stacks-blockchain.sh), uncomment the following:
+echo "=== Downloading BNS Data ==="
+BNS_IMPORT_DIR="/opt/stacks-blockchain-docker/persistent-data/bns-data" /opt/stacks-blockchain-docker/scripts/setup-bns.sh
 
 ```
-# echo "=== Enable stacks-blockchain-api fungible metadata ==="
-# sed -i -e 's|# STACKS_API_ENABLE_FT_METADATA|STACKS_API_ENABLE_FT_METADATA|' /opt/stacks-blockchain-docker/.env
 
-# echo "=== Enable stacks-blockchain-api non-fungible metadata ==="
-# sed -i -e 's|# STACKS_API_ENABLE_NFT_METADATA|STACKS_API_ENABLE_NFT_METADATA|' /opt/stacks-blockchain-docker/.env
+#### **Disable NFT/FT metadata (Optional)**
+
+In [02-stacks-blockchain.sh](./scripts/02-stacks-blockchain.sh), comment the following lines:
+
+```
+echo "=== Enable stacks-blockchain-api fungible metadata ==="
+sed -i -e 's|# STACKS_API_ENABLE_FT_METADATA|STACKS_API_ENABLE_FT_METADATA|' /opt/stacks-blockchain-docker/.env
+
+echo "=== Enable stacks-blockchain-api non-fungible metadata ==="
+sed -i -e 's|# STACKS_API_ENABLE_NFT_METADATA|STACKS_API_ENABLE_NFT_METADATA|' /opt/stacks-blockchain-docker/.env
 ```
 
 ### DigitalOcean
