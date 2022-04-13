@@ -38,8 +38,6 @@ The [scripts](./scripts) folder contains the scripts `packer` uses to setup the 
 6. [90-cleanup.sh](./scripts/90-cleanup.sh) - Cleans the built system/logs and zeroes the disk.
 7. [99-img-check.sh](./scripts/99-img-check.sh) - Checks the snapshot for any build artifacts.
 
-By default, no extra env vars are enabled in the API - [defaults are used](https://github.com/stacks-network/stacks-blockchain-docker/blob/master/sample.env).
-
 #### **Disable BNS data (Optional)**
 
 In [03-bns.sh](./scripts/03-bns.sh), comment the following lines:
