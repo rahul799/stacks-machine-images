@@ -12,11 +12,11 @@ TimeoutStartSec=0
 Restart=on-failure
 RemainAfterExit=yes
 RestartSec=5
-ExecStartPre=-/opt/stacks-blockchain-docker/manage.sh mainnet pull 
-ExecStart=/opt/stacks-blockchain-docker/manage.sh mainnet start proxy
+ExecStartPre=-/opt/stacks-blockchain-docker/manage.sh -n mainnet -a pull 
+ExecStart=/opt/stacks-blockchain-docker/manage.sh -n mainnet -a start -f proxy
 
-ExecStop=-/opt/stacks-blockchain-docker/manage.sh mainnet stop
-ExecReload=-/opt/stacks-blockchain-docker/manage.sh mainnet restart proxy
+ExecStop=-/opt/stacks-blockchain-docker/manage.sh -n mainnet -a stop
+ExecReload=-/opt/stacks-blockchain-docker/manage.sh -n mainnet -a restart -f proxy
 TimeoutSec=60
 
 [Install]
