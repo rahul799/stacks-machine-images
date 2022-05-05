@@ -12,7 +12,7 @@ TimeoutStartSec=0
 Restart=on-failure
 RemainAfterExit=yes
 RestartSec=5
-ExecStartPre=-/opt/stacks-blockchain-docker/manage.sh -n mainnet -a pull 
+ExecStartPre=-/opt/stacks-blockchain-docker/manage.sh pull
 ExecStart=/opt/stacks-blockchain-docker/manage.sh -n mainnet -a start -f proxy
 
 ExecStop=-/opt/stacks-blockchain-docker/manage.sh -n mainnet -a stop

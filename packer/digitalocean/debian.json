@@ -1,7 +1,7 @@
 {
   "variables": {
     "do_token": "{{env `DIGITALOCEAN_TOKEN`}}",
-    "application_version": "2.05.0.1.0",
+    "application_version": "2.05.0.2.0",
     "image_name": "stacks-blockchain-{{user `application_version`}}-{{timestamp}}",
     "application_name": "Stacks-Blockchain"
   },
@@ -55,7 +55,7 @@
         "scripts/01-docker.sh",
         "scripts/02-stacks-blockchain.sh",
         "scripts/02-ufw.sh",
-        "scripts/03-bns.sh",
+        "scripts/03-env.sh",
         "scripts/90-cleanup.sh",
         "scripts/99-img-check.sh"
       ]
