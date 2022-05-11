@@ -65,6 +65,10 @@
 packer build debian.json
 ```
 
+## Cloudformation
+
+Once the AMI is built, a sample [cloudformation.yaml](./cloudformation.yaml) is included to build a running service.
+
 ## Usage
 
 To run the stack in this template, you'll need to [install Packer](https://www.packer.io/intro/getting-started/install.html) and [create an AWS access key](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/). Running `packer build debian.json` without any other modifications will create a build instance configured with [stacks-blockchain-docker](https://github.com/stacks-network/stacks-blockchain-docker), clean and verify it, then power it down and create an AMI.
