@@ -10,7 +10,7 @@
     {
       "type": "digitalocean",
       "api_token": "{{user `do_token`}}",
-      "image": "debian-10-x64",
+      "image": "debian-11-x64",
       "region": "nyc3",
       "size": "s-2vcpu-4gb",
       "ssh_username": "root",
@@ -38,6 +38,7 @@
       "inline": [
         "apt -qqy update",
         "apt -qqy -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' full-upgrade",
+        "apt-get -qqy purge droplet-agent",
         "apt-get -qqy clean"
       ]
     },
