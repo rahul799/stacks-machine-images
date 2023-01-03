@@ -5,7 +5,7 @@ apt-get update -y
 echo "=== Remove any currently old versions Docker (none should be present) ==="
 apt-get remove -y docker docker-engine docker.io containerd runc
 echo "=== Installing pre-requisites for Docker ==="
-apt-get install -y \
+DEBIAN_FRONTEND=noninteractive apt-get install -y \
     ca-certificates \
     curl \
     gnupg \

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "=== Cloning stacks-blockchain-docker repo to /opt/stacks-blockchain-docker ==="
-git clone --depth 1 https://github.com/stacks-network/stacks-blockchain-docker /opt/stacks-blockchain-docker
+git clone --depth 1 --branch master https://github.com/stacks-network/stacks-blockchain-docker /opt/stacks-blockchain-docker
 
 echo "=== Copying sample.env to /opt/stacks-blockchain-docker/.env ==="
 cp -a /opt/stacks-blockchain-docker/sample.env /opt/stacks-blockchain-docker/.env
