@@ -1,6 +1,6 @@
 {
   "variables": {
-    "application_version": "2.05.0.2.0",
+    "application_version": "2.1.0.0.0",
     "image_name": "stacks-blockchain-{{user `application_version`}}-{{timestamp}}",
     "application_name": "Stacks-Blockchain",
     "root_volume_size": "100",
