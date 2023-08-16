@@ -1,7 +1,7 @@
 {
   "variables": {
     "do_token": "{{env `DIGITALOCEAN_TOKEN`}}",
-    "application_version": "2.1.0.0.0",
+    "application_version": "2.4.0.0.0",
     "image_name": "stacks-blockchain-{{user `application_version`}}-{{timestamp}}",
     "application_name": "Stacks-Blockchain"
   },
